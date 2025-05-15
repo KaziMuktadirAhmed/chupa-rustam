@@ -1556,9 +1556,10 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: string;
+  logo: string | Media;
+  'logo-text': string;
   navItems?:
     | {
-        logo: string | Media;
         label: string;
         type?: ('link' | 'dropdown') | null;
         link?: {
@@ -1681,10 +1682,11 @@ export interface Footer {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
+  logo?: T;
+  'logo-text'?: T;
   navItems?:
     | T
     | {
-        logo?: T;
         label?: T;
         type?: T;
         link?:
