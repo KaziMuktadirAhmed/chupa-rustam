@@ -214,6 +214,22 @@ export interface Page {
 export interface Post {
   id: string;
   title: string;
+  /**
+   * Select the type of post
+   */
+  postType: 'blog' | 'tutorial' | 'portfolio' | 'service' | 'skill';
+  /**
+   * Mark this post as featured
+   */
+  featured?: boolean | null;
+  /**
+   * Client name for portfolio items
+   */
+  client?: string | null;
+  /**
+   * Estimated read time (e.g. "5 min")
+   */
+  readTime?: string | null;
   heroImage?: (string | null) | Media;
   content: {
     root: {
@@ -1122,6 +1138,10 @@ export interface FormBlockSelect<T extends boolean = true> {
  */
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
+  postType?: T;
+  featured?: T;
+  client?: T;
+  readTime?: T;
   heroImage?: T;
   content?: T;
   relatedPosts?: T;
@@ -1538,21 +1558,51 @@ export interface Header {
   id: string;
   navItems?:
     | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          label: string;
+        logo: string | Media;
+        label: string;
+        type?: ('link' | 'dropdown') | null;
+        link?: {
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: string | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: string | Post;
+                } | null);
+            url?: string | null;
+            label: string;
+          };
         };
+        dropdownItems?:
+          | {
+              label: string;
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: string | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: string | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+              };
+              /**
+               * Optional: Link to specific posts to highlight in this dropdown item
+               */
+              highlightPosts?: (string | Post)[] | null;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -1565,8 +1615,9 @@ export interface Header {
  */
 export interface Footer {
   id: string;
-  navItems?:
+  quickLinks?:
     | {
+        label: string;
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
@@ -1585,6 +1636,43 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  popularServices?:
+    | {
+        label: string;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: string | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: string | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  technologyStacks?:
+    | {
+        category: string;
+        technologies: string;
+        id?: string | null;
+      }[]
+    | null;
+  socialLinks?:
+    | {
+        platform: 'linkedin' | 'github' | 'twitter' | 'facebook' | 'instagram';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  subscriptionEnabled?: boolean | null;
+  copyrightText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1596,14 +1684,37 @@ export interface HeaderSelect<T extends boolean = true> {
   navItems?:
     | T
     | {
+        logo?: T;
+        label?: T;
+        type?: T;
         link?:
           | T
           | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+            };
+        dropdownItems?:
+          | T
+          | {
               label?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              highlightPosts?: T;
+              id?: T;
             };
         id?: T;
       };
@@ -1616,9 +1727,10 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  quickLinks?:
     | T
     | {
+        label?: T;
         link?:
           | T
           | {
@@ -1630,6 +1742,37 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  popularServices?:
+    | T
+    | {
+        label?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  technologyStacks?:
+    | T
+    | {
+        category?: T;
+        technologies?: T;
+        id?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  subscriptionEnabled?: T;
+  copyrightText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -48,7 +48,7 @@ export const Posts: CollectionConfig<'posts'> = {
     },
   },
   admin: {
-    defaultColumns: ['title', 'slug', 'updatedAt'],
+    defaultColumns: ['title', 'postType', 'slug', 'updatedAt'],
     livePreview: {
       url: ({ data, req }) => {
         const path = generatePreviewPath({
@@ -73,6 +73,66 @@ export const Posts: CollectionConfig<'posts'> = {
       name: 'title',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'postType',
+      type: 'select',
+      required: true,
+      options: [
+        {
+          label: 'Blog Post',
+          value: 'blog',
+        },
+        {
+          label: 'Tutorial',
+          value: 'tutorial',
+        },
+        {
+          label: 'Portfolio Project',
+          value: 'portfolio',
+        },
+        {
+          label: 'Service',
+          value: 'service',
+        },
+        {
+          label: 'Skill',
+          value: 'skill',
+        },
+      ],
+      defaultValue: 'blog',
+      admin: {
+        position: 'sidebar',
+        description: 'Select the type of post',
+      },
+    },
+    {
+      name: 'featured',
+      type: 'checkbox',
+      label: 'Featured Post',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+        description: 'Mark this post as featured',
+      },
+    },
+    {
+      name: 'client',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+        condition: (data) => data.postType === 'portfolio',
+        description: 'Client name for portfolio items',
+      },
+    },
+    {
+      name: 'readTime',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+        condition: (data) => ['blog', 'tutorial'].includes(data.postType),
+        description: 'Estimated read time (e.g. "5 min")',
+      },
     },
     {
       type: 'tabs',
