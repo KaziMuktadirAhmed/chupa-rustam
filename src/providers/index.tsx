@@ -1,6 +1,5 @@
 import React from 'react'
-
-import { HeaderThemeProvider } from './HeaderTheme'
+import { HeaderThemeProvider } from './HeaderTheme/index'
 import { ThemeProvider } from './Theme'
 
 export const Providers: React.FC<{

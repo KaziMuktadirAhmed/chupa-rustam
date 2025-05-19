@@ -1,0 +1,14 @@
+
+> portfolio-sbujs@1.0.0 dev /home/ubuntu/portfolio_fix
+> cross-env NODE_OPTIONS=--no-deprecation next dev --turbo
+
+   ▲ Next.js 15.3.0 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://169.254.0.21:3000
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     · turbo
+
+ ✓ Starting...
+ ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` as Turbopack is now stable.
+ ✓ Ready in 1229ms
