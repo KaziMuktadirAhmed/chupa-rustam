@@ -1,42 +1,53 @@
-'use client'
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import React from 'react'
+type TrustedBySectionProps = {};
 
-const TrustedBySection: React.FC = () => {
-  // These would ideally come from the CMS
+const TrustedBySection: React.FC<TrustedBySectionProps> = () => {
   const clients = [
-    { name: 'Tennant', logo: '/images/clients/tennant.svg' },
-    { name: 'Long Shot', logo: '/images/clients/longshot.svg' },
-    { name: 'Meed', logo: '/images/clients/meed.svg' },
-    { name: 'Client 4', logo: '/images/clients/client4.svg' },
-    { name: 'Client 5', logo: '/images/clients/client5.svg' },
-  ]
+    { name: 'MEED', logo: '/assets/clients/meed.svg' },
+    { name: 'LONGSHOT', logo: '/assets/clients/longshot.svg' },
+    { name: 'Shanta Securities', logo: '/assets/clients/shanta.svg' },
+    { name: 'TIME TACKLE', logo: '/assets/clients/timetackle.svg' },
+    { name: 'REHIVE', logo: '/assets/clients/rehive.svg' },
+    { name: 'SYNSPECTIVE', logo: '/assets/clients/synspective.svg' },
+    { name: 'HARKARA', logo: '/assets/clients/harkara.svg' },
+    { name: 'HUNGRY NAKI', logo: '/assets/clients/hungrynaki.svg' }
+  ];
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 py-16">
-      <div className="container">
-        <h2 className="text-center text-xl md:text-2xl font-medium text-gray-600 dark:text-gray-300 mb-10">
-          Trusted by leading companies
-        </h2>
-
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16">
+    <section className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Trusted By</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Over a thousand clients worldwide trust us for cutting-edge software solutions
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {clients.map((client, index) => (
-            <div key={index} className="grayscale hover:grayscale-0 transition-all">
-              <img
-                src={client.logo}
-                alt={`${client.name} logo`}
-                className="h-12 md:h-14 w-auto object-contain dark:invert"
-                // Fallback to a placeholder if the image fails to load
-                onError={(e) => {
-                  e.currentTarget.src = 'https://via.placeholder.com/120x60?text=' + client.name
-                }}
-              />
+            <div key={index} className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+              <div className="h-16 w-full relative flex items-center justify-center">
+                {/* Fallback if image is not available */}
+                <span className="text-gray-800 font-semibold">{client.name}</span>
+              </div>
             </div>
           ))}
         </div>
+        
+        <div className="mt-12 text-center">
+          <Link 
+            href="/portfolio" 
+            className="text-blue-600 font-semibold hover:text-blue-800 transition duration-300"
+          >
+            View Our Portfolio →
+          </Link>
+        </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default TrustedBySection
+export default TrustedBySection;

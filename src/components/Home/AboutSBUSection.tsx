@@ -1,77 +1,103 @@
-'use client'
+import React from 'react';
+import Link from 'next/link';
 
-import React from 'react'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+type AboutSBUSectionProps = {};
 
-const AboutSBUSection: React.FC = () => {
+const AboutSBUSection: React.FC<AboutSBUSectionProps> = () => {
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-900">
-      <div className="container">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Image column */}
-          <div className="relative">
-            <div className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg">
-              <img
-                src="/images/team/team-photo.jpg"
-                alt="JS SBU Team"
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.currentTarget.src = 'https://via.placeholder.com/800x450?text=JS+SBU+Team'
-                }}
-              />
-            </div>
-
-            <div className="absolute -bottom-6 -right-6 bg-primary text-white p-4 rounded shadow-lg max-w-xs hidden md:block">
-              <p className="font-medium">
-                "We believe in crafting technology that makes a real difference."
-              </p>
-            </div>
-          </div>
-
-          {/* Content column */}
+    <section className="py-16 bg-blue-50">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">About JS SBU</h2>
-
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
-              JavaScript Software Business Unit (JS SBU) is a specialized division focused on
-              delivering cutting-edge web, mobile, and enterprise solutions powered by modern
-              JavaScript technologies.
+            <h2 className="text-3xl font-bold mb-6">About JS SBU</h2>
+            <p className="text-gray-700 mb-4">
+              A dedicated SBU under the BrainStation 23 umbrella, specializing in JavaScript language and related technologies.
             </p>
-
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
-              With a team of experienced developers, designers, and strategists, we help businesses
-              transform their digital presence and operations through innovative custom software
-              solutions.
+            <p className="text-gray-700 mb-6">
+              We empower businesses by providing scalable, customized software solutions that drive efficiency, enhance user experiences, and accelerate growth. Backed by BrainStation 23's global network and proven track record, we provide a blend of personalized service and multi-domain experience in software development.
             </p>
-
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              <div>
-                <h4 className="font-semibold mb-2 text-lg">Our Mission</h4>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  To empower businesses with technology solutions that drive growth and efficiency.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-2 text-lg">Our Vision</h4>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  To be the premier partner for JavaScript-based enterprise solutions worldwide.
-                </p>
-              </div>
+            
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+              <h3 className="text-xl font-bold mb-4">Why JavaScript?</h3>
+              <ul className="space-y-2">
+                <li className="flex items-start">
+                  <span className="text-blue-600 font-bold mr-2">98.9%</span>
+                  <span>of websites use JavaScript</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 font-bold mr-2">Top 3</span>
+                  <span>technologies for development (Stack Overflow, 2023)</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 font-bold mr-2">97%</span>
+                  <span>mobile app developers use Javascript</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 font-bold mr-2">Majority</span>
+                  <span>of browsers support JavaScript</span>
+                </li>
+              </ul>
             </div>
-
-            <Link href="/about">
-              <Button className="group">
-                Learn More About Us
-                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Button>
+            
+            <Link 
+              href="/about" 
+              className="bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition duration-300"
+            >
+              Learn More About Us
             </Link>
+          </div>
+          
+          <div className="bg-white p-8 rounded-lg shadow-md">
+            <h3 className="text-2xl font-bold mb-6">Unique Value Propositions</h3>
+            
+            <div className="mb-8">
+              <h4 className="text-lg font-semibold mb-3">Key Differentiators</h4>
+              <ul className="space-y-2">
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span>Expertise in modern frameworks like React.js, Node.js, Nest.js, Angular.js, Next.js and Vue.js</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span>Flutter expertise for high-quality cross-platform mobile apps</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span>Proven track record in delivering complex projects</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span>Only SBU with a technology stack focus and multi-domain experience</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold mb-3">Customer Benefits</h4>
+              <ul className="space-y-2">
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span>Faster Time to Market with quicker deployment cycles</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span>Scalable, reusable software components to reduce development costs</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span>Modern UI/UX designed to engage users effectively</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span>Tailored digital platforms aligned with client goals</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default AboutSBUSection
+export default AboutSBUSection;
